@@ -1,13 +1,13 @@
-=========================================
-SEPA Direct Debit (SDD) customer payments
-=========================================
+=======================
+SEPA Direct Debit (SDD)
+=======================
 
 .. |sdd| replace:: :abbr:`SDD (SEPA Direct Debit)`
 
 SEPA (Single Euro Payments Area) is a payment-integration initiative of the European Union that
-facilitates standardized and simplified electronic payments in euros across participating countries.
-With **SEPA Direct Debit** (SDD), customers sign a mandate that authorizes you to collect future
-payments from their bank accounts. This is particularly useful for recurring payments based on a
+facilitates standardized and simplified electronic payments in euros across SEPA countries. With
+**SEPA Direct Debit** (SDD), customers sign a mandate that authorizes you to collect future payments
+from their bank accounts. This is particularly useful for recurring payments based on a
 :doc:`subscription </applications/sales/subscriptions>`.
 
 You can record customer |sdd| mandates in Odoo and generate XML files listing payments to be
@@ -15,10 +15,12 @@ collected with the mandates. :ref:`Uploading these files to your bank <accountin
 instructs them to collect these payments from your customers.
 
 .. note::
-   - |sdd| is supported by all SEPA countries, which includes the 27 member states of the European
-     Union as well as additional countries.
    - `List of all SEPA countries
      <https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries>`_.
+
+.. seealso::
+   - :doc:`sct`
+   - :doc:`customer_vendor_bank_accounts`
 
 .. _accounting/batch_sdd/sepa-configuration:
 

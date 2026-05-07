@@ -7,7 +7,7 @@ generating a detailed deposit slip or payment file with a batch reference. This 
 used during :doc:`reconciliation <../bank/reconciliation>` to match bank transactions with the
 corresponding payments. This feature is particularly useful for submitting :doc:`SEPA Direct Debit
 payments <batch_sdd>`, depositing cash payments or :doc:`checks <checks>`, or generating outgoing
-payment files, such as :doc:`SEPA <pay_sepa>` or :ref:`NACHA <l10n_us/nacha>`.
+payment files, such as :doc:`SEPA <sct>` or :ref:`NACHA <l10n_us/nacha>`.
 
 Configuration
 =============

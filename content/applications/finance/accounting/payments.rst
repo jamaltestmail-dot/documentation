@@ -155,7 +155,7 @@ Registering a single payment for multiple customers or vendors (batch payments)
 Batch payments allow grouping payments from multiple customers to ease :doc:`reconciliation
 <bank/reconciliation>`. They are also useful when depositing :doc:`checks <payments/checks>` or
 cash payments to the bank or for generating bank payment files such as :doc:`SEPA
-<payments/pay_sepa>` or :ref:`NACHA <l10n_us/nacha>`.
+<payments/sct>` or :ref:`NACHA <l10n_us/nacha>`.
 
 .. seealso::
    :doc:`payments/batch`
@@ -198,7 +198,7 @@ as :guilabel:`Paid`.
    payments/batch_sdd
    payments/follow_up
    payments/internal_transfers
-   payments/pay_sepa
+   payments/sct
    payments/pay_checks
    payments/forecast
-   payments/trusted_accounts
+   payments/customer_vendor_bank_accounts
