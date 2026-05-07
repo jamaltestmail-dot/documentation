@@ -5,6 +5,7 @@ Bill of materials
 .. |BOM| replace:: :abbr:`BoM (Bill of Materials)`
 .. |BOMs| replace:: :abbr:`BoMs (Bills of Materials)`
 .. |MO| replace:: :abbr:`MO (Manufacturing Order)`
+.. |MOs| replace:: :abbr:`MO (Manufacturing Orders)`
 .. |QCP| replace:: :abbr:`QCP (quality control point)`
 
 A *bill of materials* (or *BoM* for short) documents specific components and their respective
@@ -18,6 +19,14 @@ BoM setup
 
 To create a |BOM|, go to :menuselection:`Manufacturing app --> Products --> Bills of Materials` and
 click :guilabel:`New`.
+
+Optionally specify a :guilabel:`Product Variant` that this |BOM| applies to.
+
+Specify the :guilabel:`Quantity` of units that are produced with a single |BOM|.
+
+Optionally specify a :guilabel:`Reference` that can be used to differentiate similar |BOMs| for the
+same product from one another. This reference is visible when selecting the |BOM| to use on the
+manufacturing order (MO) form.
 
 Next, set the :guilabel:`BoM Type` to :guilabel:`Manufacture this product`.
 
@@ -140,16 +149,16 @@ types of steps are available:
   interactive spreadsheet.
 
 .. important::
-   When a step is added to a work order, Odoo stores it in the **Quality** app as a |QCP|. It is
-   possible to manually create a |QCP| with the :guilabel:`Instructions` check type and even assign
-   it to an operation other than manufacturing, like receipts.
+   When a step is added to a |BOM| operation, Odoo stores it in the **Quality** app as a |QCP|. It
+   is possible to manually create a |QCP| with the :guilabel:`Instructions` check type and even
+   assign it to an operation other than manufacturing, like receipts.
 
 In the :guilabel:`Team` field, specify the team that is responsible for the step.
 
 Use the :guilabel:`Instructions` tab to specify the step's instructions.
 
 .. tip::
-   Type `/` for a list of formatting options and features, including ChatGPT.
+   Type `/` for a list of formatting options and features, including Odoo AI.
 
    .. image:: bill_configuration/description.png
       :alt: Google Gemini feature to generate instructions for a work order.
@@ -171,14 +180,15 @@ After all instructions are added, click :guilabel:`Save & Close` to close the po
 more steps, click :guilabel:`Save & New`, then repeat the same steps above to configure another
 operation.
 
-Finally in the *Open: Operations* window, click :guilabel:`Save` to save the operation.
+Finally, in the *Open: Operations* window, click :guilabel:`Save` to save the operation.
 
 .. note::
    Each operation is unique, as it is always exclusively linked to one |BOM|.
 
 .. tip::
    After creating an operation, click the :guilabel:`Copy Existing Operations` button to choose an
-   operation to duplicate.
+   operation to duplicate into the |BOM|. It is possible to choose operations from other |BOMs|.
+   This creates an independent copy of the selected operation and adds it to the |BOM|.
 
    .. image:: bill_configuration/copy-existing-operations.png
       :alt: Click Copy Existing Operations to duplicate operations.
@@ -189,19 +199,19 @@ Miscellaneous
 The :guilabel:`Miscellaneous` tab contains more |BoM| configurations to customize the following
 fields:
 
-- :guilabel:`Manufacturing Lead Time`: the number of days required to manufacture the product
-- :guilabel:`Days to prepare`: the number of days in advance that manufacturing orders should be
-  created to allow time to replenish components or manufacture sub-assemblies
-- :guilabel:`Batch Size Value`: If selected, the number of units to add to a manufacturing order can
-  be specified.
+- :guilabel:`Manufacturing Lead Time`: The number of days required to manufacture the product
+- :guilabel:`Days to prepare`: The number of days in advance that |MOs| should be created to allow
+  time to replenish components or manufacture sub-assemblies
+- :guilabel:`Batch Size Value`: If selected, the number of units to add to a |MO| can be specified.
+  When the demand exceeds the batch size, the |MO| is split into multiple |MOs|.
 - :guilabel:`Project`: the project to which the BoM applies. The Project app must be installed for
   this field to display.
 
 .. _manufacturing/basic_setup/manufacturing-readiness:
 
 - :guilabel:`Manufacturing Readiness`: Choosing :guilabel:`When all components are available`
-  displays a **red** :guilabel:`Not Available` component status unless all components are available.
-  Choosing :guilabel:`When components for the 1st operation are available` shows the
+  displays a **red** :guilabel:`Not Available` component status unless *all* components are
+  available. Choosing :guilabel:`When components for the 1st operation are available` shows the
   :guilabel:`Component Status` as a **green** :guilabel:`Not Available` when only the components
   consumed in the first operation are in stock. This indicates that although not all components are
   available, operators can at least begin with the first operation.
@@ -213,8 +223,10 @@ fields:
   .. image:: bill_configuration/component-status.png
      :alt: Show the *Component Status* field on the manufacturing order dashboard.
 
-- :guilabel:`Version`: displays the current |BoM| version, visible with the Odoo **PLM** app
+- :guilabel:`Version`: Displays the current |BoM| version, visible with the Odoo **PLM** app
   installed for managing |BoM| changes.
+- :guilabel:`Additional Notes`: Additioonal notes that are added to an |MO|. These notes are also
+  visible in the *Shop Floor* module.
 
 .. seealso::
    :doc:`Lead times <../../inventory/warehouses_storage/replenishment/lead_times>`
@@ -295,8 +307,79 @@ Once the feature is enabled, add by-products to a |BOM| by clicking the :guilabe
 Click :guilabel:`Add a line`, and fill in the :guilabel:`By-product`, :guilabel:`Quantity`, and
 :guilabel:`Unit`. Optionally, specify a :guilabel:`Produced in Operation` for the by-product.
 
+Optionally, the :guilabel:`Cost Share` percentage of a by-product can also be specified at this
+stage. The cost share is the percentage of the final production cost for the by-product, divided by
+the quantity produced. The total of all by-products' cost share must be less than or equal to `100`.
+
 .. example::
    The by-product, `Mush`, is created in the `Grind grapes` operation when producing `Red Wine`.
 
    .. image:: bill_configuration/add-by-product.png
       :alt: Show sample by-product in the BoM.
+
+BOM Overview
+============
+
+Each |BOM| form includes a *BOM Overview* that serves as a roadmap for all the |BOMs| and operations
+involved in manufacturing a :guilabel:`Quantity` of a product, including routes, times, and costs.
+
+To open it, navigate to :menuselection:`Manufacturing app --> Products --> Bills of Materials`, then
+select a |BOM| from the list. In the |BOM| form, click the :icon:`fa-bars` :guilabel:`BOM Overview`
+smart button.
+
+.. example::
+   Consider a `Table` product manufactured using the following components:
+
+   - 1 `Table Top`
+   - 4 `Table Legs`
+   - 4 `Bolts`
+   - 10 `Screws`
+
+   In this multi-level hierarchy, the `Table Top` is a sub-assembly consisting of 2 `Wood Panels`,
+   following the *Manual Assembly* operation. Furthermore, each `Wood Panel` is produced from 6 `Ply
+   Layers` and 2 `Wear Layers`.
+
+   .. image:: bill_configuration/bom-overview-table-example.png
+      :alt: The BOM Overview report for a table product.
+
+By default, the following columns are listed in the *BOM Overview*:
+
+- :guilabel:`Product`: The product being manufactured is listed in the top row. In subsequent rows,
+  the components required to manufacture the product are listed. If sub-assemblies are required for
+  a component, expand the row using the :icon:`fa-caret-right` :guilabel:`(Fold)` icon. If an
+  operation is required to manufacture the component or product, it is listed under the
+  :guilabel:`Operations` section.
+- :guilabel:`Quantity`: The number of units required to manufacture the product is listed.
+- :guilabel:`Total Cost`: This is the total cost of the unit, including price, labor, and other
+  factors. Costs displayed in grey are read directly from the component's product record (the
+  :guilabel:`Cost` field), while costs in regular text are computed by the report. The *BOM
+  Overview* only calculates a cost when it has a sub-|BOM| to expand (using manufactured components)
+  or when it can derive it from a work center rate (via operations). For purchased components,
+  consumables, or any product without a |BOM|, the report shows the standard cost defined on the
+  product and greys it out to make the distinction visible.
+
+Toggle the :icon:`fa-toggle-on` :guilabel:`Forecast` button to display more columns in the *BOM
+Overview* report. These fields help forecast future product manufacturing, taking into account
+existing component inventory.
+
+The following columns are available in the *BOM Overview* when :guilabel:`Forecast` is enabled:
+
+- :guilabel:`Free to Use/On Hand`: This shows how many units can be reserved for an order out of the
+  total number of units available to the company.
+- :guilabel:`Status`: This column specifies whether a component is :guilabel:`Available` or
+  :guilabel:`Not Available`, or if it needs to be purchased (:guilabel:`# To Buy`). If the product
+  or component needs to be manufactured, the :guilabel:`Estimated` date of completion is listed,
+  taking into account the :guilabel:`Lead Time` listed in the next column.
+- :guilabel:`Lead Time`: The number of days required to manufacture or purchase a component or
+  product is listed.
+- :guilabel:`Route`: If a product or component is replenished via a specific :doc:`route
+  <../../inventory/shipping_receiving/daily_operations/use_routes>`, it is listed in this column.
+
+Click the :guilabel:`Manufacture` button to create a new manufacturing order for the selected
+product.
+
+Click the :guilabel:`Print` button to generate a PDF of the report. To include all lines in the PDF,
+expand them using the :icon:`fa-caret-right` :guilabel:`(Fold)` icon.
+
+To expand all lines in the report at once, click the :guilabel:`Unfold` button. To collapse the
+lines again, click the :guilabel:`Fold` button.
