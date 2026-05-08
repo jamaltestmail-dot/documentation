@@ -38,7 +38,7 @@ Configure product vendor
 To configure a product's vendor for subcontractor dropshipping, navigate to
 :menuselection:`Inventory app --> Products --> Products`, and select a product, or create a new one.
 
-On the product form, click the :guilabel:`Purchase` tab and add the product's subcontractor as a
+On the product form, click the *Purchase*` tab and add the product's subcontractor as a
 vendor by clicking :guilabel:`Add a line`. Select the subcontractor in the :guilabel:`Vendor`
 drop-down menu.
 
@@ -87,7 +87,7 @@ have the *Dropship Subcontractor on Order* route enabled. This allows the compon
 dropshipped from the vendor to the subcontractor.
 
 To specify a component's vendor, select the component's name in the :guilabel:`Components` tab, and
-click the :icon:`oi-arrow-right` :guilabel:`(right)` arrow.
+click the :icon:`oi-arrow-right` :guilabel:`(Internal link)` arrow.
 
 .. tip::
    Alternatively, navigate to :menuselection:`Inventory app --> Products --> Products` and select
@@ -96,7 +96,7 @@ click the :icon:`oi-arrow-right` :guilabel:`(right)` arrow.
 On the component product form, click the :guilabel:`Purchase` tab. Add a vendor by clicking
 :guilabel:`Add a line`. Then, select the vendor in the :guilabel:`Vendor` field.
 
-Next, to configure the route, click on the :guilabel:`Inventory` tab and select the
+Next, to configure the route, click on the *Inventory* tab and select the
 :guilabel:`Dropship Subcontractor on Order` route in the :guilabel:`Routes` section.
 
 Repeat the process for every component dropshipped to the subcontractor.
@@ -169,7 +169,7 @@ dropshipped.
 
 Click :guilabel:`Confirm Order` to confirm the purchase of components from the vendor. Doing so
 turns the |RfQ| into a *vendor* |PO|. A :icon:`fa-truck` :guilabel:`Dropship` smart button appears
-at the top of the *vendor* |PO|.
+at the top of the vendor |PO|.
 
 .. note::
    Simultaneously, a :icon:`fa-truck` :guilabel:`Resupply` smart button appears at the top of the
@@ -185,7 +185,7 @@ Validate dropship order
 -----------------------
 
 Once the components have been delivered to the subcontractor by the dropship vendor, click the
-:icon:`fa-truck` :guilabel:`Dropship` smart button on the *vendor* |PO| to open the dropship order.
+:icon:`fa-truck` :guilabel:`Dropship` smart button on the vendor |PO| to open the dropship order.
 
 .. note::
    The dropship order can also be opened from the *subcontractor* |PO|. Navigate to
