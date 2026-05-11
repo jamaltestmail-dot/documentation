@@ -97,7 +97,7 @@ in a pop-up window. Fill out the following information on the form:
 
   .. tip::
      Click the :guilabel:`Generate Description` (:icon:`fa-magic` :guilabel:`AI`) to use AI to edit
-     or create the job description.
+     or create the job description.v
 
 Once the listing is ready, click the :guilabel:`Post` button. After the post has been published to a
 job board, the page reloads to the :guilabel:`Job Boards Posts` page, and the new post appears in a
